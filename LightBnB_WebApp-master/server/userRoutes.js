@@ -37,11 +37,11 @@ module.exports = function(router, database) {
   router.post('/login', (req, res) => {
     const {email, password} = req.body;
     login(email, password)
-      .then(user => {
-        if (!user) {
-          res.send({error: "error"});
-          return;
-        }
+    .then(user => {
+      if (!user) {
+        res.send({error: "error"});
+        return;
+      }
         req.session.userId = user.id;
         res.send({user: {name: user.name, email: user.email, id: user.id}});
       })
